@@ -1,36 +1,36 @@
-class Ontologia:
+class Conocimiento:
     def __init__(self):
-        self.conocimiento = {}  # Inicializar el diccionario para almacenar el conocimiento
+        self.Enciclopedia = {}  # Inicializar el diccionario para almacenar el conocimiento
 
-    # Método para agregar relaciones a la ontología
-    def agregar_relacion(self, concepto, relacion, valor):
-        if concepto not in self.conocimiento:
-            self.conocimiento[concepto] = {}  # Inicializar un diccionario para el concepto si no existe
-        self.conocimiento[concepto][relacion] = valor  # Agregar la relación y su valor al diccionario del concepto
+    # Se agregan relaciones entre los datos
+    def Anexar(self, Cosa, Relacion, Valor):
+        if Cosa not in self.Enciclopedia:
+            self.Enciclopedia[Cosa] = {}  # Inicializar un diccionario para la definición si no existe
+        self.Enciclopedia[Cosa][Relacion] = Valor  # Agregar la relación y su valor al diccionario de la definicion
 
     # Método para consultar relaciones en la ontología
-    def consultar_relacion(self, concepto, relacion):
-        if concepto in self.conocimiento and relacion in self.conocimiento[concepto]:
-            return self.conocimiento[concepto][relacion]  # Devolver el valor de la relación si existe
+    def Consulta(self, Cosa, Relacion):
+        if Cosa in self.Enciclopedia and Relacion in self.Enciclopedia[Cosa]:
+            return self.Enciclopedia[Cosa][Relacion]  # Devolver el valor de la relación si existe
         else:
-            return "No se encontró la relación"  # Devolver un mensaje si la relación no existe
+            return "No se encontro la relacion"  # Devolver un mensaje si la relacion no existe
 
-# Función principal
 def main():
-    ontologia = Ontologia()  # Crear una instancia de la ontología
+    conocimiento = Conocimiento()   
 
-    # Agregar relaciones a la ontología
-    ontologia.agregar_relacion("Perro", "es_un", "Animal")
-    ontologia.agregar_relacion("Gato", "es_un", "Animal")
-    ontologia.agregar_relacion("Animal", "tiene", "Patas")
-    ontologia.agregar_relacion("Perro", "tiene", "Cola")
+    # Agregar relaciones a la base
+    conocimiento.Anexar("Barco", "es_un", "Vehiculo")
+    conocimiento.Anexar("Barco", "tiene", "Casco")
+    conocimiento.Anexar("Auto", "es_un", "Vehiculo")
+    conocimiento.Anexar("Auto", "es_un", "Vehiculo")
+    conocimiento.Anexar("Vehiculo", "transporta", "Cosas")
 
-    # Consultar relaciones en la ontología
-    print(ontologia.consultar_relacion("Perro", "es_un"))  # Consulta si "Perro" es un "Animal"
-    print(ontologia.consultar_relacion("Gato", "tiene"))   # Consulta si "Gato" tiene algo
-    print(ontologia.consultar_relacion("Ave", "es_un"))    # Consulta si "Ave" es un "Animal" (no está en la ontología)
+    # Consultar relaciones en la base
+    print("Un barco es un: ", conocimiento.Consulta("Barco", "es_un")) 
+    print("Un barco tiene: ", conocimiento.Consulta("Barco", "tiene")) 
+    print("Un auto es un: ", conocimiento.Consulta("Auto", "es_un"))
+    print("Un avion es un: ", conocimiento.Consulta("Avion", "es_un"))   
 
 if __name__ == "__main__":
     main()
-
 
